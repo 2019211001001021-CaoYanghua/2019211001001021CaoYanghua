@@ -23,4 +23,9 @@ public class HelloWorldServlet extends HttpServlet {
         //next we need to tell about this servlet to tomcat - how？ -web.xml
 
     }
+     public void doPost(HttpServletRequest request, HttpServletResponse response)
+    {
+         
+         
+     }
 }

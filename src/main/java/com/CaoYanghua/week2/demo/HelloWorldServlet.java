@@ -20,7 +20,12 @@ public class HelloWorldServlet extends HttpServlet {
         //get writer - java.io
         PrintWriter writer=response.getWriter();
         writer.println("Hello Client");
-        //next we need to tell about this servlet to tomcat - how？ -web.xml
+        //next we need to tell about this servlet to tomcat -- how？ -web.xml
 
     }
+     public void doPost(HttpServletRequest request, HttpServletResponse response)
+    {
+         
+         
+     }
 }

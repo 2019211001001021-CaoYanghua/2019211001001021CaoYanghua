@@ -20,13 +20,11 @@ public class RegisterServlet extends HttpServlet {
     Connection con = null;
     @Override
     public void init() throws ServletException {
-        /* week 4 code */
         ServletContext servletContext = getServletContext();
         String driver =  servletContext.getInitParameter("driver");
         String url =  servletContext.getInitParameter("url");
         String username =  servletContext.getInitParameter("username");
         String password =  servletContext.getInitParameter("password");
-        System.out.println(driver+url+username+password);
         try {
             Class.forName(driver);
             con = DriverManager.getConnection(url,username,password);

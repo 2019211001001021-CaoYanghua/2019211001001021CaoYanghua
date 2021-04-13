@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.interfaces.RSAKey;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +59,8 @@ public class RegisterServlet extends HttpServlet {
         writer.println("<br>gender :"+username);
         writer.println("<br>birth Date :"+username);
         writer.close(); */
+        response.setContentType("text/html;charset=utf-8");
+
 
         List<User> list = new ArrayList<>();
         String username =  request.getParameter("username");
@@ -71,13 +74,14 @@ public class RegisterServlet extends HttpServlet {
         int resultSet;
         PreparedStatement ps = null;
         try {
+
             ps = con.prepareStatement(sql);
             ps.setString(1,username);
             ps.setString(2,password);
             ps.setString(3,email);
             ps.setString(4,gender);
             ps.setString(5,birthDate);
-            resultSet = ps.executeUpdate();
+            ps.executeUpdate();
             ps.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -86,44 +90,50 @@ public class RegisterServlet extends HttpServlet {
         String sql2 = "SELECT * FROM usertable";
         Statement statement = null ;
         ResultSet resultSet2 = null ;
-
         try {
             statement = con.createStatement();
             resultSet2 = statement.executeQuery(sql2);
-            while (resultSet2.next())
-            {
-                User user = new User();
-                user.setId(resultSet2.getInt(1));
-                user.setUsername(resultSet2.getString(2));
-                user.setPassword(resultSet2.getString(3));
-                user.setEmail(resultSet2.getString(4));
-                user.setGender(resultSet2.getString(5));
-                user.setBirthDate(resultSet2.getString(6));
-                list.add(user);
-            }
-            resultSet2.close();
-            statement.close();
-            con.close();
+//            while (resultSet2.next())
+//            {
+//                User user = new User();
+//                user.setId(resultSet2.getInt(1));
+//                user.setUsername(resultSet2.getString(2));
+//                user.setPassword(resultSet2.getString(3));
+//                user.setEmail(resultSet2.getString(4));
+//                user.setGender(resultSet2.getString(5));
+//                user.setBirthDate(resultSet2.getString(6));
+//                list.add(user);
+//            }
+//            resultSet2.close();
+//            statement.close();
+           // con.close();
+
+            //request.setAttribute("rsname", resultSet2);
+           // request.getRequestDispatcher("userList.jsp").forward(request,response);
+           // System.out.println("i am  in RegisterServlet-->doPost()--> afterward()");
+
+            response.sendRedirect("login.jsp");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        }finally {
-            PrintWriter writer = null;
-            try {
+        }
+//        finally {
+//            PrintWriter writer = null;
+           /* try {
                 writer = response.getWriter();
                 response.setContentType("text/html;charset=utf-8");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            writer.println("<table border=\"1\">");
-            writer.println("<tr>");
-            writer.println("<td>ID</td>");
-            writer.println("<td>UserName</td>");
-            writer.println("<td>Password</td>");
-            writer.println("<td>Email</td>");
-            writer.println("<td>Gender</td>");
-            writer.println("<td>Birthday</td>");
-            writer.println("</tr>");
-            for (User user : list) {
+//            writer.println("<table border=\"1\">");
+//            writer.println("<tr>");
+//            writer.println("<td>ID</td>");
+//            writer.println("<td>UserName</td>");
+//            writer.println("<td>Password</td>");
+//            writer.println("<td>Email</td>");
+//            writer.println("<td>Gender</td>");
+//            writer.println("<td>Birthday</td>");
+//            writer.println("</tr>");
+//            for (User user : list) {
                 writer.println("<tr>");
                 writer.println("<td>"+user.getId()+"</td>");
                 writer.println("<td>"+user.getUsername()+"</td>");
@@ -132,10 +142,11 @@ public class RegisterServlet extends HttpServlet {
                 writer.println("<td>"+user.getGender()+"</td>");
                 writer.println("<td>"+user.getBirthDate()+"</td>");
                 writer.println("</tr>");
-            }
-            writer.println("</table>");
-            writer.close();
-        }
+            }*/
+//            writer.println("</table>");
+//            writer.close();
+//        }
+        con= (Connection) getServletContext().getAttribute("con");
 
     }
 

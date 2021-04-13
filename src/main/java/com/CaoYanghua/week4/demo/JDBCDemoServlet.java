@@ -14,7 +14,7 @@ import java.sql.SQLException;
         urlPatterns = {"/jdbc"},
         initParams = {
                 @WebInitParam(name="driver", value="com.microsoft.sqlserver.jdbc.SQLServerDriver"),
-                @WebInitParam(name="url", value="jdbc:sqlserver://localhost:databaseName=userdb"),
+                @WebInitParam(name="url", value="jdbc:sqlserver://localhost:1433;databaseName=userdb"),
                 @WebInitParam(name="username", value="sa"),
                 @WebInitParam(name="password", value="1354437507cl")
         },loadOnStartup = 1

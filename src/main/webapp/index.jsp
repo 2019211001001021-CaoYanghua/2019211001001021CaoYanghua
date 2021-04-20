@@ -5,7 +5,7 @@
     <title>JSP - Hello World</title>
 </head>
 <%@include file="header.jsp"%>
-<h2>Welcome to My Online Shop Home Page.</h2><br>
+<h2>Welcome to My Home Page.</h2><br>
 <form method="get" target='_blank' action="SearchServlet">
 <input type="text" name="txt" size=30/>
 <select name="search">

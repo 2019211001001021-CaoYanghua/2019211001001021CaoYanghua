@@ -39,5 +39,12 @@
         <param-name>password</param-name>
         <param-value>1354437507cl</param-value>
     </context-param>
+    <servlet>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>com.CaoYanghua.week6.demo.SearchServlet</servlet-class>
+    </servlet>
+    <welcome-file-list>
+        <welcome-file>home</welcome-file>
+    </welcome-file-list>
 
 </web-app>

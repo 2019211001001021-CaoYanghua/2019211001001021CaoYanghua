@@ -43,5 +43,8 @@
         <servlet-name>SearchServlet</servlet-name>
         <servlet-class>com.CaoYanghua.week6.demo.SearchServlet</servlet-class>
     </servlet>
+    <welcome-file-list>
+        <welcome-file>home</welcome-file>
+    </welcome-file-list>
 
 </web-app>

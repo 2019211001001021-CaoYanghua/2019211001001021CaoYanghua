@@ -1,5 +1,8 @@
 package com.CaoYanghua.week5.demo;
 
+import com.CaoYanghua.dao.UserDao;
+import com.CaoYanghua.model.User;
+
 import javax.print.attribute.standard.RequestingUserName;
 import javax.servlet.*;
 import javax.servlet.annotation.WebInitParam;
@@ -31,17 +34,18 @@ public class LoginServlet extends HttpServlet {
 //        }
 //    }
         con = (Connection)getServletContext().getAttribute("con");
-        System.out.println(con);
+        //System.out.println(con);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+        //doPost(request,response);
+        request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter writer=response.getWriter();
-        try {
+        PrintWriter writer = response.getWriter();
+        /*try {
             String sql = "SELECT * FROM usertable WHERE username=? and password=?";
             PreparedStatement ps;
             ps = con.prepareStatement(sql);
@@ -66,7 +70,21 @@ public class LoginServlet extends HttpServlet {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+}*/
+        String username=request.getParameter("username");
+        String password=request.getParameter("password");
+        UserDao userDao=new UserDao();
+        try {
+            User user = userDao.findByUsernamePassword(con,username,password);
+            if(user!=null){
+                request.setAttribute("user",user);
+                request.getRequestDispatcher("WEB-INF/views/userInfo.jsp").forward(request,response);
+            }else{
+                request.setAttribute("message","Username or Password Error!");
+                request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request,response);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
-
-    }
-}
+    }}

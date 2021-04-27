@@ -2,10 +2,12 @@ package com.CaoYanghua.dao;
 
 import com.CaoYanghua.model.User;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -28,6 +30,7 @@ public class UserDao implements  IUserDao{
         }else {
             return false;
         }
+
     }
 
     @Override
@@ -50,6 +53,7 @@ public class UserDao implements  IUserDao{
         st.setDate(4, (java.sql.Date)user.getBirthDate());
         st.setString(5, user.getUsername());
         return  st.executeUpdate();
+
     }
 
     @Override
@@ -102,6 +106,7 @@ public class UserDao implements  IUserDao{
         PreparedStatement st=con.prepareStatement(sql);
         st.setString(1, user.getUsername());
         ResultSet rs=st.executeQuery();
+        List<User> List=new ArrayList<>();
         if(rs.next()){
             user=new User();
             user.setId(rs.getInt("id"));
@@ -110,10 +115,10 @@ public class UserDao implements  IUserDao{
             user.setEmail(rs.getString("email"));
             user.setGender(rs.getString("gender"));
             user.setBirthDate(rs.getDate("birthdate"));
-
+            List.add(user);
         }
 
-        return Collections.singletonList(user);
+        return List;
     }
 
     @Override
@@ -123,6 +128,8 @@ public class UserDao implements  IUserDao{
         PreparedStatement st=con.prepareStatement(sql);
         st.setString(1, user.getPassword());
         ResultSet rs=st.executeQuery();
+        List<User> List=new ArrayList<>();
+       // User user=new User();
         if(rs.next()){
             user=new User();
             user.setId(rs.getInt("id"));
@@ -131,10 +138,9 @@ public class UserDao implements  IUserDao{
             user.setEmail(rs.getString("email"));
             user.setGender(rs.getString("gender"));
             user.setBirthDate(rs.getDate("birthdate"));
-
+            List.add(user);
         }
-
-        return Collections.singletonList(user);
+        return List;
     }
 
     @Override
@@ -144,6 +150,7 @@ public class UserDao implements  IUserDao{
         PreparedStatement st=con.prepareStatement(sql);
         st.setString(1, user.getEmail());
         ResultSet rs=st.executeQuery();
+        List<User> List=new ArrayList<>();
         if(rs.next()){
             user=new User();
             user.setId(rs.getInt("id"));
@@ -152,10 +159,10 @@ public class UserDao implements  IUserDao{
             user.setEmail(rs.getString("email"));
             user.setGender(rs.getString("gender"));
             user.setBirthDate(rs.getDate("birthdate"));
-
+            List.add(user);
         }
 
-        return Collections.singletonList(user);
+        return List;
     }
 
     @Override
@@ -165,6 +172,7 @@ public class UserDao implements  IUserDao{
         PreparedStatement st=con.prepareStatement(sql);
         st.setString(1, user.getGender());
         ResultSet rs=st.executeQuery();
+        List<User> List=new ArrayList<>();
         if(rs.next()){
             user=new User();
             user.setId(rs.getInt("id"));
@@ -173,10 +181,10 @@ public class UserDao implements  IUserDao{
             user.setEmail(rs.getString("email"));
             user.setGender(rs.getString("gender"));
             user.setBirthDate(rs.getDate("birthdate"));
-
+            List.add(user);
         }
 
-        return Collections.singletonList(user);
+        return List;
     }
 
     @Override
@@ -186,6 +194,7 @@ public class UserDao implements  IUserDao{
         PreparedStatement st=con.prepareStatement(sql);
         st.setDate(1,(java.sql.Date)user.getBirthDate());
         ResultSet rs=st.executeQuery();
+        List<User> List=new ArrayList<>();
         if(rs.next()){
             user=new User();
             user.setId(rs.getInt("id"));
@@ -194,10 +203,10 @@ public class UserDao implements  IUserDao{
             user.setEmail(rs.getString("email"));
             user.setGender(rs.getString("gender"));
             user.setBirthDate(rs.getDate("birthdate"));
-
+            List.add(user);
         }
 
-        return Collections.singletonList(user);
+        return List;
     }
 
     @Override
@@ -207,6 +216,7 @@ public class UserDao implements  IUserDao{
         PreparedStatement st=con.prepareStatement(sql);
         ResultSet rs=st.executeQuery();
         User user=null;
+        List<User> List=new ArrayList<>();
         if(rs.next()){
             user=new User();
             user.setId(rs.getInt("id"));
@@ -215,9 +225,9 @@ public class UserDao implements  IUserDao{
             user.setEmail(rs.getString("email"));
             user.setGender(rs.getString("gender"));
             user.setBirthDate(rs.getDate("birthdate"));
-
+            List.add(user);
         }
 
-        return Collections.singletonList(user);
+        return List;
     }
 }

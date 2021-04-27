@@ -40,9 +40,13 @@
         <param-value>1354437507cl</param-value>
     </context-param>
     <servlet>
-        <servlet-name>SearchServlet</servlet-name>
+        <servlet-name>Search</servlet-name>
         <servlet-class>com.CaoYanghua.week6.demo.SearchServlet</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>Search</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>home</welcome-file>
     </welcome-file-list>

@@ -91,7 +91,7 @@ public class LoginServlet extends HttpServlet {
                     rememberMeCookie.setMaxAge(5);
 
                     response.addCookie(usernameCookie);
-                    //response.addCookie(passwordCookie);
+                    response.addCookie(passwordCookie);
                     response.addCookie(rememberMeCookie);
                 }
 //                Cookie c=new Cookie("sessionid",""+user.getId());

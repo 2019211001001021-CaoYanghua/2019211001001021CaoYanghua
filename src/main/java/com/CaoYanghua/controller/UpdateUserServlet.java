@@ -50,6 +50,10 @@ public class UpdateUserServlet extends HttpServlet {
         UserDao User=new UserDao();
         try {
             User.updateUser(con,user);
+            HttpSession session= request.getSession();
+            session.setMaxInactiveInterval(60*60);
+            session.setAttribute("user",user);
+            request.getRequestDispatcher("WEB-INF/views/userInfo.jsp");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

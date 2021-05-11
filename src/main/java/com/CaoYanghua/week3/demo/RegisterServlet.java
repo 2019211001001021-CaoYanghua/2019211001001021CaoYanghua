@@ -29,7 +29,7 @@ public class RegisterServlet extends HttpServlet {
         try {
             Class.forName(driver);
             con = DriverManager.getConnection(url,username,password);
-            System.out.println("init()-->"+con);
+            //System.out.println("init()-->"+con);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -37,7 +37,7 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.getRequestDispatcher("WEB-INF/views/register.jsp").forward(request,response);
 
     }
 
@@ -112,7 +112,7 @@ public class RegisterServlet extends HttpServlet {
            // request.getRequestDispatcher("userList.jsp").forward(request,response);
            // System.out.println("i am  in RegisterServlet-->doPost()--> afterward()");
 
-            response.sendRedirect("login.jsp");
+            request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request,response);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

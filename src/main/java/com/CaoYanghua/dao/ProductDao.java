@@ -1,7 +1,6 @@
 package com.CaoYanghua.dao;
 
 import com.CaoYanghua.model.Product;
-import com.CaoYanghua.model.User;
 
 import java.io.InputStream;
 import java.sql.Connection;
@@ -67,7 +66,7 @@ public class ProductDao implements  IProductDao{
         PreparedStatement pt = con.prepareStatement(sql);
         pt.setInt(1, productId);
         ResultSet rs=pt.executeQuery();
-        if(rs.next()){
+        while(rs.next()){
             product=new Product();
             product.setProductId(rs.getInt("ProductId"));
             product.setProductName(rs.getString("ProductName"));
@@ -88,7 +87,7 @@ public class ProductDao implements  IProductDao{
         pt.setInt(1, categoryId);
         ResultSet rs=pt.executeQuery();
         List<Product> List=new ArrayList<>();
-        if(rs.next()){
+        while(rs.next()){
             product=new Product();
             product.setProductId(rs.getInt("ProductId"));
             product.setProductName(rs.getString("ProductName"));
@@ -110,7 +109,7 @@ public class ProductDao implements  IProductDao{
         pt.setDouble(2, maxPrice);
         ResultSet rs=pt.executeQuery();
         List<Product> List=new ArrayList<>();
-        if(rs.next()){
+        while(rs.next()){
             product=new Product();
             product.setProductId(rs.getInt("ProductId"));
             product.setProductName(rs.getString("ProductName"));
@@ -130,16 +129,18 @@ public class ProductDao implements  IProductDao{
         PreparedStatement pt = con.prepareStatement(sql);
         ResultSet rs=pt.executeQuery();
         List<Product> List=new ArrayList<>();
-        if(rs.next()){
+        while(rs.next()){
             product=new Product();
             product.setProductId(rs.getInt("ProductId"));
             product.setProductName(rs.getString("ProductName"));
             product.setProductDescription(rs.getString("ProductDescription"));
-            product.setPicture(rs.getBinaryStream("picture"));
+            //product.setPicture(rs.getBinaryStream("picture"));
             product.setPrice(rs.getDouble("price"));
             product.setCategoryId(rs.getInt("CategoryId"));
             List.add(product);
         }
+        System.out.println("successfully");
+        System.out.println(List);
         return List;
     }
 
@@ -151,7 +152,7 @@ public class ProductDao implements  IProductDao{
         pt.setString(1, productName);
         ResultSet rs=pt.executeQuery();
         List<Product> List=new ArrayList<>();
-        if(rs.next()){
+        while(rs.next()){
             product=new Product();
             product.setProductId(rs.getInt("ProductId"));
             product.setProductName(rs.getString("ProductName"));
@@ -172,7 +173,7 @@ public class ProductDao implements  IProductDao{
         pt.setInt(1, productId);
         ResultSet rs=pt.executeQuery();
         List<Product> List=new ArrayList<>();
-        if(rs.next()){
+        while(rs.next()){
             product=new Product();
             product.setPicture(rs.getBinaryStream("picture"));
             List.add(product);

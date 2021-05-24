@@ -1,5 +1,7 @@
 package com.CaoYanghua.model;
 
+
+
 import java.io.InputStream;
 
 public class Product {

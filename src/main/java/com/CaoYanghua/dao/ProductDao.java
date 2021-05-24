@@ -3,10 +3,7 @@ package com.CaoYanghua.dao;
 import com.CaoYanghua.model.Product;
 
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,8 +63,8 @@ public class ProductDao implements  IProductDao{
         PreparedStatement pt = con.prepareStatement(sql);
         pt.setInt(1, productId);
         ResultSet rs=pt.executeQuery();
+        product=new Product();
         while(rs.next()){
-            product=new Product();
             product.setProductId(rs.getInt("ProductId"));
             product.setProductName(rs.getString("ProductName"));
             product.setProductDescription(rs.getString("ProductDescription"));
@@ -139,8 +136,8 @@ public class ProductDao implements  IProductDao{
             product.setCategoryId(rs.getInt("CategoryId"));
             List.add(product);
         }
-        System.out.println("successfully");
-        System.out.println(List);
+        //System.out.println("successfully");
+        //System.out.println(List);
         return List;
     }
 
@@ -179,5 +176,18 @@ public class ProductDao implements  IProductDao{
             List.add(product);
         }
         return List;
+    }
+
+    public byte[] getPictureById(Integer productId, Connection con) throws SQLException {
+        byte[] imgBytes=null;
+        String sql="select picture from Product where ProductId=?";
+        PreparedStatement pt=con.prepareStatement(sql);
+        pt.setInt(1,productId);
+        ResultSet rs=pt.executeQuery();
+        while(rs.next()){
+            Blob blob=rs.getBlob("picture");
+            imgBytes=blob.getBytes(1,(int)blob.length());
+        }
+        return imgBytes;
     }
 }

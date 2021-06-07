@@ -73,7 +73,7 @@
 			</div>
 		</div>
 	</section> <!--/#cart_items-->
-<c:if test="${empty cart}">
+<c:if test="${!empty cart}">
 	<section id="do_action">
 		<div class="container">
 			

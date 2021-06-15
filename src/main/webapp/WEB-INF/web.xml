@@ -74,4 +74,14 @@
         <filter-name>AuthFilter</filter-name>
         <url-pattern>/hello</url-pattern>
     </filter-mapping>
+
+    <filter>
+        <filter-name>CaoYanghuaFilter</filter-name>
+        <filter-class>com.lab2.CaoYanghuaFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CaoYanghuaFilter</filter-name>
+        <url-pattern>/lab2/welcome.jsp</url-pattern>
+        <url-pattern>/lab2/validation.jsp</url-pattern>
+    </filter-mapping>
 </web-app>

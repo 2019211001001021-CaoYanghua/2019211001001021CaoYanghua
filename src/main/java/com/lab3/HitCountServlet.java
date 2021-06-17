@@ -39,9 +39,5 @@ public class HitCountServlet extends HttpServlet {
         );
     }
 
-    public void destroy() {
-
-    }
-
 
 }

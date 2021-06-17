@@ -13,8 +13,6 @@
 </head>
 <body>
 
-
-
 <%--todo 2: use c:choose ,c:when c:otherwise to validate username is 'admin' and  password is 'admin'--%>
 <c:choose>
     <c:when test="${param.username.equals('admin')&& param.password.equals('admin')}">
